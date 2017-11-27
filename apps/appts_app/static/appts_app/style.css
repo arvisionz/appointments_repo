@@ -1,0 +1,27 @@
+body{
+  background-color: #e3f5fb;
+}
+
+body h1{
+  color: blue;
+  font-size: 42px;
+  text-align: center;
+}
+
+h3{
+  color: red;
+}
+
+.today{
+  float: left;
+  width: 50%;
+}
+
+.other{
+  float: right;
+  width: 50%;
+}
+
+h2{
+  color: red;
+}

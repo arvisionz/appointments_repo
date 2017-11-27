@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Update Appointment</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'appts_app/style.css' %}">
+    </head>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% for appt in appts %}
+        <h1>Edit Appointment {{appt.id}}</h1>
+        <form action="{%url 'appts_stuff:update' id=appt.id %}" method="POST">
+            {% csrf_token %}
+            <p><label for="task">Task:</label></p>
+            <p><input type="text" name="task" value={{appt.task}}></p>
+            <p><label for="status">Status:</label></p>
+            <select name="status_options">
+              <option value="Pending">Pending</option>
+              <option value="Done">Done</option>
+              <option value="Missed">Missed</option>
+            </select>
+            <p><label for="date">Date:</label></p>
+            <p><input type="date" name="date" min="2017-11-27" value={{appt.date}}></p>
+            <p><label for="time">Time:</label></p>
+            <p><input type="time" name="time" value={{appt.time}}></p>
+            <p><input type="submit" name="submit" value="Update"></p>
+        </form>
+        {% endfor %}
+        <a href="{%url 'appts_stuff:index' %}">Home</a>
+        <a href="{%url 'login_stuff:my_logout' %}">Logout</a>
+    </body>
+</html>

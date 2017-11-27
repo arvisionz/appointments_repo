@@ -1,0 +1,38 @@
+body{
+  background-color: #e3f5fb;
+}
+
+body h1{
+  color: blue;
+  font-size: 42px;
+  margin-left: 460px;
+}
+
+h3{
+  color: red;
+  margin-left: 185px;
+}
+
+.register{
+  float: left;
+  width: 50%;
+}
+
+.login{
+  float: right;
+  width: 50%;
+}
+
+.forms{
+  width: 435px;
+  background-color: #e3f5fb;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.forms p{
+  margin-left: 105px;
+}
+
+#button{
+  padding-bottom: 15px;
+}

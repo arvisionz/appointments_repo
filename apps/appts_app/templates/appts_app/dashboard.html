@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'appts_app/style.css' %}">
+    </head>
+    <body>
+        <h1>Hello, {{request.session.user_name}}!</h1>
+        <div class="today">
+          <h3>Here are your appointments for Today, {{ date_now }}: </h3>
+          <table>
+              <tr>
+                  <th>Tasks</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Action</th>
+              </tr>
+              {% for appt in myappts %}
+                  {% if appt.date == '2017-11-27' %}
+              <tr>
+                  <td>{{appt.task}}</td>
+                  <td>{{appt.time}}</td>
+                  <td>{{appt.status}}</td>
+                  <td><a href="{%url 'appts_stuff:edit' id=appt.id %}">Edit</a> | <a href="{%url 'appts_stuff:destroy' id=appt.id %}">Delete</a></td>
+              </tr>
+                  {% endif %}
+              {% endfor %}
+          </table>
+        </div>
+        <div class="other">
+          <h3>Here are your other appointments:</h3>
+          <table>
+              <tr>
+                  <th>Tasks</th>
+                  <th>Date</th>
+                  <th>Time</th>
+              </tr>
+              {% for appt in myappts %}
+                  {% if appt.date != '2017-11-27' %}
+              <tr>
+                  <td>{{appt.task}}</td>
+                  <td>{{appt.date}}</td>
+                  <td>{{appt.time}}</td>
+              </tr>
+                  {% endif %}
+              {% endfor %}
+          </table>
+        </div>
+        <div class="add">
+          <h2>Add Appointment:</h2>
+          {% if messages %}
+              {% for message in messages %}
+              <p>{{ message }}</p>
+              {% endfor %}
+          {% endif %}
+          <form action="{%url 'appts_stuff:add' %}" method="post">
+              {% csrf_token %}
+              <p><label for="date">Date: </label><input type="date" name="date" min="2017-11-27"></p>
+              <p><label for="time">Time: (must be entered HH:MM and AM/PM) </label><input type="time" name="time"></p>
+              <p><label for="task">Task: </label><input type="text" name="task"></p>
+              <p><input type="submit" name="submit" value="Add"></p>
+          </form>
+          <p><a href="{%url 'login_stuff:my_logout' %}">Logout</a></p>
+        </div>
+    </body>
+</html>

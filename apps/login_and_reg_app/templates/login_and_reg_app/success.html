@@ -1,0 +1,16 @@
+<!DOCTYPE>
+<html>
+    <head>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'login_and_reg_app/style.css' %}">
+    </head>
+    <body>
+        <h1>You have successfully registered!</h1>
+        {{request.session.user_id}}
+        {{request.session.user_name}}
+        <form action="{%url 'my_logout' %}"  method='post'>
+            {% csrf_token %}
+            <input type="submit" name="logout" value="Logout">
+        </form>
+    </body>
+</html>
